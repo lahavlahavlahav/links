@@ -6,6 +6,11 @@
     <title>Lilou Books | לילו בוקס - אומנות בספרים</title>
     <meta name="description" content="לילו בוקס - אומנות מקורית בספרים מקופלים על ידי להב ברק">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -14,8 +19,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f3f0 0%, #e8e4df 100%);
+            font-family: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1ea 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -46,40 +51,61 @@
             margin-bottom: 40px;
         }
 
-        .logo {
-            width: 200px;
-            height: auto;
-            margin-bottom: 20px;
-            animation: slideDown 0.8s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .profile-title {
-            font-size: 28px;
-            font-weight: 300;
-            color: #3a3a3a;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: #2d2d2d;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .profile-title:hover {
+            transform: scale(1.05);
+            color: #c9b896;
+        }
+
+        .profile-author {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #6b6b6b;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .decorative-line {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #c9b896 50%, transparent 100%);
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .decorative-line::before,
+        .decorative-line::after {
+            content: '✦';
+            position: absolute;
+            top: -8px;
+            font-size: 12px;
+            color: #c9b896;
+        }
+
+        .decorative-line::before {
+            left: -15px;
+        }
+
+        .decorative-line::after {
+            right: -15px;
         }
 
         .profile-subtitle {
-            font-size: 16px;
-            color: #7a7a7a;
+            font-size: 15px;
+            color: #8a8a8a;
             font-weight: 300;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
-
-
 
         .links-container {
             display: flex;
@@ -99,50 +125,128 @@
             gap: 12px;
             font-size: 16px;
             font-weight: 400;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(139, 115, 85, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(139, 115, 85, 0.08);
+            cursor: pointer;
         }
 
+        /* Wave effect - starts from right, moves to left, leaves color behind */
         .link-button::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 0;
+            right: -100%;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, rgba(139, 115, 85, 0.05) 0%, rgba(139, 115, 85, 0.1) 100%);
-            transition: width 0.3s ease;
+            transition: right 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 0;
         }
 
         .link-button:hover::before {
-            width: 100%;
+            right: 0;
+        }
+
+        /* The wave itself - cream colored wave that passes through */
+        .link-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -150%;
+            width: 150%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(245, 241, 234, 0.9) 0%, rgba(250, 248, 245, 0.7) 40%, transparent 70%);
+            transition: right 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+            filter: blur(10px);
+        }
+
+        .link-button:hover::after {
+            right: 150%;
         }
 
         .link-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(139, 115, 85, 0.2);
+        }
+
+        .link-button:active {
+            transform: translateY(-2px) scale(0.98);
+            transition: all 0.1s ease;
         }
 
         .link-button span {
-            z-index: 1;
+            z-index: 2;
+            position: relative;
         }
 
-        .link-instagram {
-            background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+        /* Instagram - pink gradient */
+        .link-instagram::before {
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(249, 213, 229, 0.3) 30%,
+                rgba(238, 172, 153, 0.4) 60%,
+                rgba(249, 213, 229, 0.5) 100%
+            );
+        }
+
+        /* WhatsApp - green gradient */
+        .link-whatsapp::before {
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(184, 230, 201, 0.3) 30%,
+                rgba(133, 213, 165, 0.4) 60%,
+                rgba(184, 230, 201, 0.5) 100%
+            );
+        }
+
+        /* Website - blue gradient */
+        .link-website::before {
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(197, 221, 245, 0.3) 30%,
+                rgba(149, 196, 237, 0.4) 60%,
+                rgba(197, 221, 245, 0.5) 100%
+            );
+        }
+
+        /* Workshop 1 - yellow gradient */
+        .link-workshop-1::before {
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 216, 155, 0.3) 30%,
+                rgba(255, 235, 180, 0.4) 60%,
+                rgba(255, 216, 155, 0.5) 100%
+            );
+        }
+
+        /* Workshop 2 - orange gradient */
+        .link-workshop-2::before {
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                rgba(255, 179, 102, 0.3) 30%,
+                rgba(255, 200, 140, 0.4) 60%,
+                rgba(255, 179, 102, 0.5) 100%
+            );
         }
 
         .emoji {
             font-size: 20px;
+            transition: transform 0.5s ease;
+            z-index: 2;
+        }
+
+        .link-button:hover .emoji {
+            transform: scale(1.2) rotate(10deg);
         }
 
         footer {
             text-align: center;
             margin-top: 40px;
             padding-top: 30px;
-            color: #999;
+            color: #a8a8a8;
             font-size: 14px;
             font-weight: 300;
         }
@@ -150,20 +254,24 @@
         /* Responsive */
         @media (max-width: 768px) {
             .profile-title {
-                font-size: 24px;
+                font-size: 28px;
+            }
+
+            .profile-author {
+                font-size: 16px;
             }
 
             .profile-subtitle {
                 font-size: 14px;
             }
 
-            .logo {
-                width: 160px;
-            }
-
             .link-button {
                 padding: 16px 24px;
                 font-size: 15px;
+            }
+
+            .link-button:hover {
+                transform: translateY(-3px) scale(1.01);
             }
         }
 
@@ -189,8 +297,11 @@
 <body>
     <div class="container">
         <div class="profile-section">
-            <img src="B1E1D0F9-F673-4146-98FF-472E7E1015BF.jpeg" alt="Lilou Books Logo" class="logo">
-            <h1 class="profile-title">אמנות פיסול ספרים 📚</h1>
+            <a href="https://liloubooks.com" target="_blank" style="text-decoration: none; color: inherit;">
+                <h1 class="profile-title" style="cursor: pointer;">Lilou Books</h1>
+            </a>
+            <p class="profile-author">by Lahav Barak</p>
+            <div class="decorative-line"></div>
             <p class="profile-subtitle">יצירות אומנות ייחודיות מספרים ישנים</p>
         </div>
 
@@ -210,20 +321,19 @@
                 <span class="emoji">💬</span>
             </a>
 
-            <a href="https://www.tel-aviv.gov.il/pages/MainItemPage.aspx?WebID=3af57d92-807c-43c5-8d5f-6fd455eb2776&ListID=969f7de3-0ac9-4a30-88f0-2e1a7281f3d0&ItemID=47728" target="_blank" class="link-button link-workshop">
+            <a href="https://www.tel-aviv.gov.il/pages/MainItemPage.aspx?WebID=3af57d92-807c-43c5-8d5f-6fd455eb2776&ListID=969f7de3-0ac9-4a30-88f0-2e1a7281f3d0&ItemID=47728" target="_blank" class="link-button link-workshop-1">
                 <span>הסדנה שלי בתל אביב - 6.11</span>
                 <span class="emoji">🎨</span>
             </a>
 
-            <a href="https://www.coing.co/kehilatayim_yc/228132" target="_blank" class="link-button link-workshop">
+            <a href="https://www.coing.co/kehilatayim_yc/228132" target="_blank" class="link-button link-workshop-2">
                 <span>הסדנה שלי בגבעתיים - 17.11</span>
                 <span class="emoji">🎨</span>
             </a>
         </div>
 
         <footer>
-            <p>✨ Lilou Books - להב ברק ✨</p>
-            <p style="margin-top: 8px; font-size: 12px;">נוצר באהבה 💙</p>
+            <p>✨ Lilou Books ✨</p>
         </footer>
     </div>
 </body>
