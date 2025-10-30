@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilou Books | לילו בוקס - אומנות בספרים</title>
+    <meta name="description" content="לילו בוקס - אומנות מקורית בספרים מקופלים על ידי להב ברק">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f3f0 0%, #e8e4df 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-title {
+            font-size: 28px;
+            font-weight: 300;
+            color: #3a3a3a;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .profile-subtitle {
+            font-size: 16px;
+            color: #7a7a7a;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-button {
+            background: white;
+            padding: 18px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #3a3a3a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 16px;
+            font-weight: 400;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(139, 115, 85, 0.05) 0%, rgba(139, 115, 85, 0.1) 100%);
+            transition: width 0.3s ease;
+            z-index: 0;
+        }
+
+        .link-button:hover::before {
+            width: 100%;
+        }
+
+        .link-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .link-button span {
+            z-index: 1;
+        }
+
+        .link-instagram {
+            background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+        }
+
+        .emoji {
+            font-size: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            color: #999;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-title {
+                font-size: 24px;
+            }
+
+            .profile-subtitle {
+                font-size: 14px;
+            }
+
+            .logo {
+                width: 160px;
+            }
+
+            .link-button {
+                padding: 16px 24px;
+                font-size: 15px;
+            }
+        }
+
+        /* Animation delays for staggered effect */
+        .link-button:nth-child(1) { animation: slideIn 0.5s ease-out 0.4s backwards; }
+        .link-button:nth-child(2) { animation: slideIn 0.5s ease-out 0.5s backwards; }
+        .link-button:nth-child(3) { animation: slideIn 0.5s ease-out 0.6s backwards; }
+        .link-button:nth-child(4) { animation: slideIn 0.5s ease-out 0.7s backwards; }
+        .link-button:nth-child(5) { animation: slideIn 0.5s ease-out 0.8s backwards; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-section">
+            <img src="B1E1D0F9-F673-4146-98FF-472E7E1015BF.jpeg" alt="Lilou Books Logo" class="logo">
+            <h1 class="profile-title">אמנות פיסול ספרים 📚</h1>
+            <p class="profile-subtitle">יצירות אומנות ייחודיות מספרים ישנים</p>
+        </div>
+
+        <div class="links-container">
+            <a href="https://www.instagram.com/liloubooks____/" target="_blank" class="link-button link-instagram">
+                <span>עקבי אחרי באינסטגרם</span>
+                <span class="emoji">✨</span>
+            </a>
+
+            <a href="https://liloubooks.com" target="_blank" class="link-button link-website">
+                <span>האתר שלי</span>
+                <span class="emoji">🌐</span>
+            </a>
+
+            <a href="https://chat.whatsapp.com/JOqFT8cIA25LpzgHJv8bCZ?mode=wwc" target="_blank" class="link-button link-whatsapp">
+                <span>הצטרפי לקבוצת הווטסאפ</span>
+                <span class="emoji">💬</span>
+            </a>
+
+            <a href="https://www.tel-aviv.gov.il/pages/MainItemPage.aspx?WebID=3af57d92-807c-43c5-8d5f-6fd455eb2776&ListID=969f7de3-0ac9-4a30-88f0-2e1a7281f3d0&ItemID=47728" target="_blank" class="link-button link-workshop">
+                <span>הסדנה שלי בתל אביב - 6.11</span>
+                <span class="emoji">🎨</span>
+            </a>
+
+            <a href="https://www.coing.co/kehilatayim_yc/228132" target="_blank" class="link-button link-workshop">
+                <span>הסדנה שלי בגבעתיים - 17.11</span>
+                <span class="emoji">🎨</span>
+            </a>
+        </div>
+
+        <footer>
+            <p>✨ Lilou Books - להב ברק ✨</p>
+            <p style="margin-top: 8px; font-size: 12px;">נוצר באהבה 💙</p>
+        </footer>
+    </div>
+</body>
+</html>
