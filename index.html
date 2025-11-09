@@ -130,63 +130,32 @@
             font-size: 16px;
             font-weight: 400;
             box-shadow: 0 4px 20px rgba(139, 115, 85, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(139, 115, 85, 0.08);
             cursor: pointer;
         }
 
-        /* Background color that fills on hover */
         .link-button::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 0;
-            border-radius: 15px;
         }
 
         .link-button:hover::before {
-            opacity: 1;
-        }
-
-        /* Ripple effect from cursor position */
-        .link-button::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .link-button:hover::after {
-            animation: ripple 0.6s ease-out;
-        }
-
-        @keyframes ripple {
-            from {
-                width: 0;
-                height: 0;
-                opacity: 0.5;
-            }
-            to {
-                width: 300px;
-                height: 300px;
-                opacity: 0;
-            }
+            right: 0;
         }
 
         .link-button:hover {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 12px 35px rgba(139, 115, 85, 0.2);
+            border-color: transparent;
         }
 
         .link-button:active {
@@ -199,49 +168,24 @@
             position: relative;
         }
 
-        /* Instagram - pink gradient */
         .link-instagram::before {
             background: linear-gradient(135deg, rgba(249, 213, 229, 0.4) 0%, rgba(238, 172, 153, 0.3) 100%);
         }
 
-        .link-instagram::after {
-            background: rgba(249, 213, 229, 0.5);
-        }
-
-        /* WhatsApp - green gradient */
         .link-whatsapp::before {
             background: linear-gradient(135deg, rgba(184, 230, 201, 0.4) 0%, rgba(133, 213, 165, 0.3) 100%);
         }
 
-        .link-whatsapp::after {
-            background: rgba(184, 230, 201, 0.5);
-        }
-
-        /* Website - blue gradient */
         .link-website::before {
             background: linear-gradient(135deg, rgba(197, 221, 245, 0.4) 0%, rgba(149, 196, 237, 0.3) 100%);
         }
 
-        .link-website::after {
-            background: rgba(197, 221, 245, 0.5);
-        }
-
-        /* Workshop 1 - yellow gradient */
         .link-workshop-1::before {
             background: linear-gradient(135deg, rgba(255, 216, 155, 0.4) 0%, rgba(255, 235, 180, 0.3) 100%);
         }
 
-        .link-workshop-1::after {
-            background: rgba(255, 216, 155, 0.5);
-        }
-
-        /* Workshop 2 - orange gradient */
         .link-workshop-2::before {
             background: linear-gradient(135deg, rgba(255, 179, 102, 0.4) 0%, rgba(255, 200, 140, 0.3) 100%);
-        }
-
-        .link-workshop-2::after {
-            background: rgba(255, 179, 102, 0.5);
         }
 
         .emoji {
@@ -263,7 +207,6 @@
             font-weight: 300;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .profile-title {
                 font-size: 28px;
@@ -287,7 +230,6 @@
             }
         }
 
-        /* Animation delays for staggered effect */
         .link-button:nth-child(1) { animation: slideIn 0.5s ease-out 0.4s backwards; }
         .link-button:nth-child(2) { animation: slideIn 0.5s ease-out 0.5s backwards; }
         .link-button:nth-child(3) { animation: slideIn 0.5s ease-out 0.6s backwards; }
@@ -333,8 +275,8 @@
                 <span class="emoji">💬</span>
             </a>
 
-            <a href="https://www.tel-aviv.gov.il/pages/MainItemPage.aspx?WebID=3af57d92-807c-43c5-8d5f-6fd455eb2776&ListID=969f7de3-0ac9-4a30-88f0-2e1a7281f3d0&ItemID=47728" target="_blank" class="link-button link-workshop-1">
-                <span>הסדנה שלי בתל אביב - 6.11</span>
+            <a href="https://barcelona.israelicommunityeu.org/Juntos_Barcelona/233803" target="_blank" class="link-button link-workshop-1">
+                <span>הסדנה שלי בברצלונה - 18 בדצמבר 🇪🇸</span>
                 <span class="emoji">🎨</span>
             </a>
 
