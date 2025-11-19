@@ -53,6 +53,26 @@
         .profile-section {
             text-align: center;
             margin-bottom: 40px;
+            position: relative;
+        }
+
+        .book-image {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeInBook 0.8s ease-in 0.3s forwards;
+        }
+
+        @keyframes fadeInBook {
+            to {
+                opacity: 1;
+            }
         }
 
         .profile-title {
@@ -258,6 +278,7 @@
 <body>
     <div class="container">
         <div class="profile-section">
+            <img src="https://cdn.midjourney.com/4f8c8c4a-8e5f-4f5e-9c3e-7d8f9e5c4b3a/0_0.png" alt="Book Art" class="book-image">
             <a href="https://liloubooks.com" target="_blank" style="text-decoration: none; color: inherit;">
                 <h1 class="profile-title" style="cursor: pointer;">Lilou Books</h1>
             </a>
@@ -268,7 +289,7 @@
 
         <div class="links-container">
             <a href="https://www.instagram.com/liloubooks____/" target="_blank" class="link-button link-instagram">
-                <span>עקבי אחרי באינסטגרם</span>
+                <span>עקבו אחרי באינסטגרם</span>
                 <span class="emoji">✨</span>
             </a>
 
@@ -278,27 +299,22 @@
             </a>
 
             <a href="https://www.etsy.com/shop/LiloubooksArt" target="_blank" class="link-button link-etsy">
-                <span>קנו תבניות לפיסול ספרים באטסי שלי</span>
+                <span>הזמינו תבניות לפיסול ספרים - My Patterns on Etsy</span>
                 <span class="emoji">🛍️</span>
             </a>
 
             <a href="https://chat.whatsapp.com/JOqFT8cIA25LpzgHJv8bCZ?mode=wwc" target="_blank" class="link-button link-whatsapp">
-                <span>הצטרפי לקבוצת הווטסאפ</span>
+                <span>הצטרפו לקבוצת הווטסאפ</span>
                 <span class="emoji">💬</span>
-            </a>
-            
-            <a href="https://pay.grow.link/13bbd7323e5292e005e4668434f5498b-MjcyNjk5Mg" target="_blank" class="link-button link-workshop-2">
-                <span>ערכה ביתית לפיסול ספרים - 189 ₪</span>
-                <span class="emoji">📦</span>
             </a>
 
             <a href="https://pay.grow.link/ca353020c1131759c3f77814621db15b-MjcxNDAyOA" target="_blank" class="link-button link-workshop-1">
-                <span>סדנת מתקדמות - 2.1</span>
-                <span class="emoji">✨</span>
+                <span>סדנת מתקדמים - 2.1</span>
+                <span class="emoji">🌟🌟</span>
             </a>
 
             <a href="https://pay.grow.link/d8bc5370d2b7f40e59a498f7abd91877-MjY0OTUwNA" target="_blank" class="link-button link-workshop-2">
-                <span>סדנת מתחילות - 9.1</span>
+                <span>סדנת מתחילים - 9.1</span>
                 <span class="emoji">🌟</span>
             </a>
         </div>
