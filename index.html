@@ -219,6 +219,22 @@
             background: linear-gradient(135deg, rgba(255, 179, 102, 0.4) 0%, rgba(255, 200, 140, 0.3) 100%);
         }
 
+
+        /* UPCOMING WORKSHOPS - rendered from the WORKSHOPS list below; past ones hide automatically */
+        .workshops { margin-bottom: 28px; display: none; }
+        .workshops.has-items { display: block; }
+        .workshops-title { text-align: center; font-family: 'Heebo', sans-serif; font-size: 15px; font-weight: 500; color: #8b7355; letter-spacing: .5px; margin-bottom: 12px; }
+        .workshop-card { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #fffaf0 0%, #fff 100%); border: 1.5px solid #c9b896; border-radius: 15px; padding: 14px 18px; margin-bottom: 12px; text-decoration: none; color: #3a3a3a; box-shadow: 0 4px 20px rgba(139,115,85,.12); transition: transform .3s ease, box-shadow .3s ease; }
+        .workshop-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(139,115,85,.22); }
+        .workshop-date { flex: none; width: 58px; text-align: center; background: #2d2d2d; color: #fff; border-radius: 10px; padding: 6px 0; line-height: 1.1; }
+        .workshop-date b { display: block; font-size: 22px; font-weight: 500; }
+        .workshop-date small { font-size: 12px; opacity: .8; }
+        .workshop-info { flex: 1; min-width: 0; }
+        .workshop-info strong { display: block; font-size: 16px; font-weight: 500; }
+        .workshop-info span { display: block; font-size: 13px; color: #7a7a7a; margin-top: 2px; }
+        .workshop-cta { flex: none; font-size: 13px; font-weight: 500; color: #fff; background: #c9b896; border-radius: 999px; padding: 7px 12px; }
+        .link-mekapele::before { background: linear-gradient(135deg, rgba(210, 225, 200, 0.45) 0%, rgba(180, 205, 170, 0.3) 100%); }
+
         .emoji {
             font-size: 20px;
             transition: transform 0.5s ease;
@@ -309,6 +325,12 @@
             <p class="profile-subtitle">יצירות אומנות ייחודיות מספרים ישנים</p>
         </div>
 
+        <!-- UPCOMING WORKSHOPS - edit only the WORKSHOPS list at the bottom of this file -->
+        <section class="workshops" id="workshops" aria-label="הסדנאות הקרובות">
+            <p class="workshops-title">✦ הסדנאות הקרובות ✦</p>
+            <div id="workshopsList"></div>
+        </section>
+
         <div class="links-container">
             <a href="https://www.instagram.com/liloubooks____/" target="_blank" class="link-button link-instagram">
                 <span>עקבו אחרי באינסטגרם</span>
@@ -318,6 +340,11 @@
             <a href="https://liloubooks.com" target="_blank" class="link-button link-website">
                 <span>האתר שלי</span>
                 <span class="emoji">🌐</span>
+            </a>
+
+            <a href="https://www.mekapele.com" target="_blank" class="link-button link-mekapele">
+                <span>מקפלא – מחולל תבניות לפיסול ספרים</span>
+                <span class="emoji">📐</span>
             </a>
 
             <a href="https://www.etsy.com/shop/LiloubooksArt" target="_blank" class="link-button link-etsy">
@@ -340,5 +367,50 @@
             <p>✨ Lilou Books ✨</p>
         </footer>
     </div>
+
+    <script>
+    // ============================================================
+    // WORKSHOPS - add each public workshop here.
+    // start/end are Israel time. A workshop disappears from the page
+    // by itself once its end time has passed, and the list is always
+    // sorted soonest-first.
+    // ============================================================
+    var WORKSHOPS = [
+        {
+            title: "סדנת פיסול ספרים פתוחה לקהל",
+            place: "",
+            start: "2026-12-04T11:00:00+02:00",
+            end:   "2026-12-04T14:00:00+02:00",
+            url:   "https://pay.grow.link/ca353020c1131759c3f77814621db15b-MjcxNDAyOA"
+        }
+    ];
+
+    (function () {
+        var DAYS = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+        var now = Date.now();
+        var upcoming = WORKSHOPS
+            .filter(function (w) { return new Date(w.end || w.start).getTime() > now; })
+            .sort(function (a, b) { return new Date(a.start) - new Date(b.start); });
+        if (!upcoming.length) return;
+        var list = document.getElementById("workshopsList");
+        upcoming.forEach(function (w) {
+            var d = new Date(w.start);
+            var parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Jerusalem", day: "numeric", month: "numeric", hour: "2-digit", minute: "2-digit", weekday: "short", hour12: false }).formatToParts(d);
+            var get = function (t) { var p = parts.filter(function (x) { return x.type === t; })[0]; return p ? p.value : ""; };
+            var dayIdx = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(get("weekday"));
+            var a = document.createElement("a");
+            a.className = "workshop-card";
+            a.href = w.url; a.target = "_blank"; a.rel = "noopener";
+            a.innerHTML =
+                '<div class="workshop-date"><b>' + parseInt(get("day"), 10) + "." + parseInt(get("month"), 10) + '</b><small>יום ' + DAYS[dayIdx] + '</small></div>' +
+                '<div class="workshop-info"><strong></strong><span></span></div>' +
+                '<div class="workshop-cta">להרשמה</div>';
+            a.querySelector("strong").textContent = w.title;
+            a.querySelector(".workshop-info span").textContent = (w.place ? w.place + " · " : "") + "בשעה " + get("hour") + ":" + get("minute");
+            list.appendChild(a);
+        });
+        document.getElementById("workshops").classList.add("has-items");
+    })();
+    </script>
 </body>
 </html>
